@@ -58,6 +58,7 @@ df['music_recc_rating'] = pd.to_numeric(df['music_recc_rating'], errors='coerce'
 
 # Dash App setup
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 app.layout = dbc.Container([
     html.H3("Spotify Users in Focus: Plan Selection and Mood-Driven Listening", className="text-center my-4"),
