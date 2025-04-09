@@ -22,12 +22,20 @@ from urllib import request
 """# Load Data"""
 
 # Load dataset
-dataset_url = "https://drive.google.com/uc?export=view&id=1Dx65HYqbI4xDlzkCe3ZaZ6gzyzwIvvvb"
-name = 'Spotify_data.csv'
-with request.urlopen(dataset_url) as f, open(name, 'w') as outf:
-    outf.write(f.read().decode('ISO-8859-1'))
-df = pd.read_csv(name)
-df.head()
+# dataset_url = "https://drive.google.com/uc?export=view&id=1Dx65HYqbI4xDlzkCe3ZaZ6gzyzwIvvvb"
+# name = 'Spotify_data.csv'
+# with request.urlopen(dataset_url) as f, open(name, 'w') as outf:
+#     outf.write(f.read().decode('ISO-8859-1'))
+# df = pd.read_csv(name)
+# df.head()
+
+from io import StringIO
+
+dataset_url = "https://drive.google.com/uc?export=download&id=1Dx65HYqbI4xDlzkCe3ZaZ6gzyzwIvvvb"
+
+with request.urlopen(dataset_url) as f:
+    content = f.read().decode('ISO-8859-1')
+    df = pd.read_csv(StringIO(content))
 
 """# Data Preprocessing"""
 
