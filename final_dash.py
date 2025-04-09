@@ -54,13 +54,6 @@ df['Gender'] = df['Gender'].astype(str).str.strip()
 df['spotify_subscription_plan'] = df['spotify_subscription_plan'].astype(str).str.strip()
 df['music_recc_rating'] = pd.to_numeric(df['music_recc_rating'], errors='coerce')
 
-"""# Testing"""
-
-print("Data loaded:", df.shape)
-print("Columns:", df.columns.tolist())
-print("First few rows:")
-print(df.head())
-
 
 """# Data Visualising"""
 
