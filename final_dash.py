@@ -22,12 +22,12 @@ from urllib import request
 """# Load Data"""
 
 # Load dataset
-dataset_url = "https://raw.githubusercontent.com/yehyifan/SpotiftDashApp/refs/heads/main/Spotify_data.csv"
+dataset_url = "https://drive.google.com/uc?export=view&id=1Dx65HYqbI4xDlzkCe3ZaZ6gzyzwIvvvb"
 name = 'Spotify_data.csv'
 with request.urlopen(dataset_url) as f, open(name, 'w') as outf:
     outf.write(f.read().decode('ISO-8859-1'))
 df = pd.read_csv(name)
-# df.head()
+df.head()
 
 """# Data Preprocessing"""
 
@@ -59,7 +59,6 @@ df['music_recc_rating'] = pd.to_numeric(df['music_recc_rating'], errors='coerce'
 
 # Dash App setup
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
 
 app.layout = dbc.Container([
     html.H3("Spotify Users in Focus: Plan Selection and Mood-Driven Listening", className="text-center my-4"),
@@ -199,11 +198,9 @@ def update_charts(age, gender, sub, ratings):
             'font': {'size': 20}
         },
         coloraxis_colorbar=dict(
-            title='User Count',
-            tickfont=dict(color='#333'),
-            titlefont=dict(size=14)
-        ),
-        font=dict(color='#3C3C3C')
+        title=dict(text='User Count', font=dict(size=14)), 
+        tickfont=dict(color='#333')
+        )
     )
 
 
@@ -211,4 +208,5 @@ def update_charts(age, gender, sub, ratings):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
