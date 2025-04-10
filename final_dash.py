@@ -81,7 +81,7 @@ app.layout = dbc.Container([
                 options=[{"label": s, "value": s} for s in ['All', 'Free', 'Premium']],
                 value='All', id='sub-filter'
             ),
-            html.Label("Recommendation Rating:"),
+            html.Label("Music Recommendation System Rating:"),
             dcc.Checklist(
                 options=[{"label": str(r), "value": r} for r in range(1, 6)],
                 value=[1, 2, 3, 4, 5], id='rating-filter', inline=True
