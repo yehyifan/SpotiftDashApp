@@ -89,11 +89,11 @@ app.layout = dbc.Container([
         ], width=3),
 
         dbc.Col([
-            dcc.Graph(id='bar-chart'),
-            dcc.Graph(id='bubble-chart'),
+            dcc.Graph(id='bar-chart', style={"height": "450px"}),
+            dcc.Graph(id='bubble-chart', style={"height": "500px"}),
         ], width=9)
     ])
-], fluid=True)
+])
 
 @app.callback(
     [Output('bar-chart', 'figure'), Output('bubble-chart', 'figure')],
@@ -214,4 +214,5 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
