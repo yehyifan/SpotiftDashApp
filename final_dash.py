@@ -59,7 +59,6 @@ df['music_recc_rating'] = pd.to_numeric(df['music_recc_rating'], errors='coerce'
 
 # Dash App setup
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
 
 app.layout = dbc.Container([
     html.H3("Spotify Users in Focus: Plan Selection and Mood-Driven Listening", className="text-center my-4"),
@@ -167,6 +166,9 @@ def update_charts(age, gender, sub, ratings):
         music_lis_frequency=mood_freq['music_lis_frequency'].str.split(',')
     ).explode('music_lis_frequency')
 
+    mood_freq['music_Influencial_mood'] = mood_freq['music_Influencial_mood'].str.strip().str.title()
+    mood_freq['music_lis_frequency'] = mood_freq['music_lis_frequency'].str.strip().str.title()
+
     mood_freq_counts = mood_freq.groupby(['music_Influencial_mood', 'music_lis_frequency']).size().reset_index(name='Counts')
 
     # Bubble chart
@@ -199,7 +201,7 @@ def update_charts(age, gender, sub, ratings):
             'font': {'size': 20}
         },
         coloraxis_colorbar=dict(
-        title=dict(text='User Count', font=dict(size=14)), 
+        title=dict(text='User Count', font=dict(size=14)),
         tickfont=dict(color='#333')
         )
     )
@@ -209,5 +211,6 @@ def update_charts(age, gender, sub, ratings):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
